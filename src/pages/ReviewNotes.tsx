@@ -1,0 +1,217 @@
+
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useToast } from "@/components/ui/use-toast";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+
+const ReviewNotes = () => {
+  const [title, setTitle] = useState("");
+  const [subject, setSubject] = useState("");
+  const [classGroup, setClassGroup] = useState("");
+  const [content, setContent] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [aiResult, setAiResult] = useState<null | {
+    clarity: string;
+    structure: string;
+    content: string;
+    suggestions: string;
+    overall: string;
+  }>(null);
+  
+  const { toast } = useToast();
+  const navigate = useNavigate();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Simulate AI processing
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setAiResult({
+        clarity: "The lesson note is generally clear, but some sections could benefit from simpler language for primary students.",
+        structure: "Well-structured with a clear beginning, middle, and end. Consider adding a quick recap section.",
+        content: "Good content that aligns with the curriculum. Add more examples for visual learners.",
+        suggestions: "Include 2-3 interactive activities. Consider adding visual aids to support key concepts.",
+        overall: "This is a strong lesson plan that just needs minor adjustments to be more engaging for all learning styles."
+      });
+      
+      toast({
+        title: "Analysis complete",
+        description: "AI review of your lesson note is ready",
+      });
+    }, 3000);
+  };
+
+  const handleSave = () => {
+    toast({
+      title: "Note saved",
+      description: "Your lesson note and AI review have been saved",
+    });
+    navigate("/dashboard");
+  };
+
+  return (
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-cream to-white">
+      <Navbar />
+      
+      <main className="flex-grow container mx-auto px-4 py-8">
+        <h1 className="text-3xl font-bold text-gray-800 mb-8">AI Lesson Note Review</h1>
+        
+        <div className="grid md:grid-cols-2 gap-8">
+          {/* Input Form */}
+          <Card className="fc-card">
+            <CardHeader>
+              <CardTitle>Create Lesson Note</CardTitle>
+              <CardDescription>Enter your lesson note details for AI review</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="title">Lesson Title</Label>
+                  <Input 
+                    id="title" 
+                    value={title} 
+                    onChange={(e) => setTitle(e.target.value)} 
+                    placeholder="Introduction to Addition"
+                    className="fc-input"
+                    required
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="subject">Subject</Label>
+                  <Select value={subject} onValueChange={setSubject} required>
+                    <SelectTrigger className="fc-input">
+                      <SelectValue placeholder="Select a subject" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="mathematics">Mathematics</SelectItem>
+                      <SelectItem value="english">English Language</SelectItem>
+                      <SelectItem value="science">Science</SelectItem>
+                      <SelectItem value="social_studies">Social Studies</SelectItem>
+                      <SelectItem value="arts">Arts & Crafts</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="class">Class</Label>
+                  <Select value={classGroup} onValueChange={setClassGroup} required>
+                    <SelectTrigger className="fc-input">
+                      <SelectValue placeholder="Select a class" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="primary_1">Primary 1</SelectItem>
+                      <SelectItem value="primary_2">Primary 2</SelectItem>
+                      <SelectItem value="primary_3">Primary 3</SelectItem>
+                      <SelectItem value="primary_4">Primary 4</SelectItem>
+                      <SelectItem value="primary_5">Primary 5</SelectItem>
+                      <SelectItem value="primary_6">Primary 6</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="content">Lesson Note Content</Label>
+                  <Textarea 
+                    id="content" 
+                    value={content} 
+                    onChange={(e) => setContent(e.target.value)}
+                    placeholder="Enter your complete lesson note here..."
+                    className="fc-input min-h-32 resize-none"
+                    required
+                  />
+                </div>
+                
+                <Button 
+                  type="submit" 
+                  className="w-full bg-skyBlue hover:bg-skyBlue/90 text-white mt-4" 
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Analyzing..." : "Analyze with AI"}
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+          
+          {/* AI Feedback */}
+          <Card className="fc-card">
+            <CardHeader>
+              <CardTitle>AI Feedback</CardTitle>
+              <CardDescription>Review suggestions and improvements</CardDescription>
+            </CardHeader>
+            <CardContent>
+              {!aiResult ? (
+                <div className="flex flex-col items-center justify-center py-12 text-center">
+                  <div className="mb-4 text-skyBlue opacity-50">
+                    <svg className="w-16 h-16" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path 
+                        className={`${isSubmitting ? "animate-spin" : ""}`} 
+                        fill="currentColor" 
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <p className="text-gray-500 text-lg">
+                    {isSubmitting 
+                      ? "AI is analyzing your lesson note..." 
+                      : "Submit your lesson note to get AI feedback"}
+                  </p>
+                </div>
+              ) : (
+                <div className="space-y-5">
+                  <div className="bg-gray-50 p-4 rounded-md">
+                    <h3 className="font-medium text-skyBlue mb-1">Clarity</h3>
+                    <p className="text-gray-700">{aiResult.clarity}</p>
+                  </div>
+                  
+                  <div className="bg-gray-50 p-4 rounded-md">
+                    <h3 className="font-medium text-skyBlue mb-1">Structure</h3>
+                    <p className="text-gray-700">{aiResult.structure}</p>
+                  </div>
+                  
+                  <div className="bg-gray-50 p-4 rounded-md">
+                    <h3 className="font-medium text-skyBlue mb-1">Content</h3>
+                    <p className="text-gray-700">{aiResult.content}</p>
+                  </div>
+                  
+                  <div className="bg-gray-50 p-4 rounded-md">
+                    <h3 className="font-medium text-skyBlue mb-1">Suggestions</h3>
+                    <p className="text-gray-700">{aiResult.suggestions}</p>
+                  </div>
+                  
+                  <div className="bg-green-50 p-4 rounded-md">
+                    <h3 className="font-medium text-green-600 mb-1">Overall Assessment</h3>
+                    <p className="text-gray-700">{aiResult.overall}</p>
+                  </div>
+                </div>
+              )}
+            </CardContent>
+            <CardFooter>
+              <Button 
+                onClick={handleSave} 
+                disabled={!aiResult}
+                className="w-full bg-green-600 hover:bg-green-700 text-white"
+              >
+                Save Note and Feedback
+              </Button>
+            </CardFooter>
+          </Card>
+        </div>
+      </main>
+      
+      <Footer />
+    </div>
+  );
+};
+
+export default ReviewNotes;
