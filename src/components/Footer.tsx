@@ -1,5 +1,5 @@
-
 import { Link } from "react-router-dom";
+import Logo from "@/components/Logo";
 
 const Footer = () => {
   return (
@@ -8,9 +8,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <div className="flex items-center space-x-2">
-              <div className="bg-skyBlue rounded-full h-8 w-8 flex items-center justify-center">
-                <span className="text-white font-bold text-sm">FCS</span>
-              </div>
+              <Logo className="h-8 w-8" />
               <span className="font-semibold text-lg text-gray-800">Family Care Schools</span>
             </div>
             <p className="mt-4 text-gray-600">

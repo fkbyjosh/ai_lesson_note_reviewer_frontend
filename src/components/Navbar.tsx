@@ -1,9 +1,9 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Menu, X } from "lucide-react";
+import Logo from "@/components/Logo";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,9 +12,7 @@ const Navbar = () => {
     <header className="sticky top-0 w-full bg-white/95 backdrop-blur-sm z-50 shadow-sm">
       <div className="container mx-auto px-4 flex items-center justify-between h-16">
         <Link to="/" className="flex items-center space-x-2">
-          <div className="bg-skyBlue rounded-full h-8 w-8 flex items-center justify-center">
-            <span className="text-white font-bold text-sm">FCS</span>
-          </div>
+          <Logo className="h-8 w-8" />
           <span className="font-semibold text-lg text-gray-800">Family Care Schools</span>
         </Link>
 
