@@ -2,7 +2,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { removeBackground, loadImage } from "@/utils/image/removeBackground";
 
-const LOGO_URL = "/lovable-uploads/fe17b3fb-d2e8-4bf8-a7d2-95b2aa5c2ece.png";
+// Update to the new logo source from the uploaded image
+const LOGO_URL = "/lovable-uploads/4debb91c-8b45-4adc-9339-a1ba21d79fd2.png";
 
 const Logo = ({
   className = "h-10 w-auto",
@@ -35,7 +36,9 @@ const Logo = ({
       }
     };
     doRemove();
-    return () => { isMounted = false };
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   if (processing && !src) {
@@ -58,3 +61,4 @@ const Logo = ({
 };
 
 export default Logo;
+
