@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
 import Logo from "@/components/Logo";
-
 const Footer = () => {
-  return (
-    <footer className="bg-cream py-8 border-t border-gray-200">
+  return <footer className="bg-cream py-8 border-t border-gray-200">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
@@ -46,7 +44,7 @@ const Footer = () => {
               <p>Family Care Schools</p>
               <p>123 Education Lane</p>
               <p>Email: info@familycareschools.edu</p>
-              <p>Phone: (123) 456-7890</p>
+              <p>Phone: +233 20 680 5570</p>
             </address>
           </div>
         </div>
@@ -54,8 +52,6 @@ const Footer = () => {
           <p>&copy; {new Date().getFullYear()} Family Care Schools. All rights reserved.</p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
