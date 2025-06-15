@@ -5,44 +5,46 @@
 
 @layer base {
   :root {
-    --background: 48 100% 88%; /* #FFF2C2 in HSL */
+    /* Main Theme Colors */
+    --background: 48 100% 92%;           /* #FFF8E3, cream with a hint of white */
     --foreground: 222.2 84% 4.9%;
 
-    --card: 0 0% 100%;
+    --card: 48 100% 98%;                 /* #FFFCF2, extra-light cream for cards */
     --card-foreground: 222.2 84% 4.9%;
 
-    --popover: 0 0% 100%;
+    --popover: 48 100% 98%;              /* match cards on popover */
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 191 100% 50%; /* #00CAFF in HSL */
+    --primary: 191 100% 50%;             /* #00CAFF - sky blue for accents */
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 48 100% 88%; /* #FFF2C2 in HSL */
+    --secondary: 48 100% 88%;            /* #FFF2C2 - original cream */
     --secondary-foreground: 222.2 47.4% 11.2%;
 
-    --muted: 210 40% 96.1%;
+    --muted: 48 100% 96%;                /* #FFF6E4, soft muted cream */
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 191 100% 86%; /* lite #00CAFF */
+    --accent: 191 100% 92%;              /* lighter blue for accent bg */
     --accent-foreground: 222.2 47.4% 11.2%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 191 100% 50%; /* #00CAFF in HSL */
+    --border: 48 28% 90%;                /* subtle warm border */
+    --input: 48 28% 92%;                 /* slightly lighter than border */
+    --ring: 191 95% 70%;                 /* lighter blue glow (soft) */
 
     --radius: 0.5rem;
 
-    --sidebar-background: 48 100% 97%; /* slightly lighter #FFF2C2 */
+    /* Sidebar */
+    --sidebar-background: 48 100% 96%;   /* #FFF8E3, softened cream */
     --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 191 100% 50%; /* #00CAFF */
+    --sidebar-primary: 191 100% 50%;     /* #00CAFF */
     --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 48 100% 93%; /* lighter cream */
+    --sidebar-accent: 48 100% 93%;
     --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 191 100% 50%; /* #00CAFF */
+    --sidebar-border: 48 28% 90%;        /* cream border */
+    --sidebar-ring: 191 95% 70%;
   }
 
   .dark {
@@ -63,18 +65,34 @@
   }
 }
 
+/* Section backgrounds, improved blending */
 @layer components {
   .hero-section {
-    background-image: radial-gradient(circle at top right, rgba(0,202,255,0.15), transparent 70%),
-                     radial-gradient(circle at bottom left, rgba(255,242,194,0.3), transparent 70%);
+    /* Soft radial cream and gentle sky blue background, blended at corners */
+    background-image: 
+      radial-gradient(circle at 50% 0%, rgba(255, 242, 194, 0.55) 0%, rgba(255, 250, 237, 0.8) 75%, transparent 100%),
+      radial-gradient(circle at 90% 20%, rgba(0,202,255,0.11), transparent 65%),
+      linear-gradient(135deg, #FFF8E3 65%, #FFF2C2 100%);
   }
 
   .fc-card {
-    @apply bg-white rounded-lg shadow-md border border-gray-100 p-6 transition-all hover:shadow-lg;
+    @apply bg-[hsl(var(--card))] rounded-xl shadow-md border border-[hsl(var(--border))] p-6 transition-all hover:shadow-lg;
   }
 
   .fc-input {
-    @apply px-4 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[color:#00CAFF] focus:border-transparent;
+    @apply px-4 py-2 border border-[hsl(var(--input))] rounded-md bg-[hsl(var(--popover))] focus:outline-none focus:ring-2 focus:ring-[color:#93eaff] focus:border-transparent;
+  }
+
+  /* Accent buttons should use sky blue, but text and border should blend with cream */
+  .accent-button {
+    @apply bg-skyBlue text-white border-none hover:bg-skyBlue/90 transition-colors;
   }
 }
 
+/* (Optional) Add some blending for section dividers or subtle backgrounds */
+.bg-section-cream {
+  background-color: #FFF8E3;
+}
+.bg-section-blue {
+  background: linear-gradient(90deg, #FFF2C2 60%, #00CAFF10 100%);
+}
