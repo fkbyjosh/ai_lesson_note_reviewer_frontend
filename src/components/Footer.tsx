@@ -42,7 +42,8 @@ const Footer = () => {
             <h3 className="font-semibold text-gray-800 mb-4">Contact</h3>
             <address className="not-italic text-gray-600">
               <p>Family Care Schools</p>
-              <p>123 Education Lane</p>
+              <p>AG1028 Arthill Street 
+CE-095-3690</p>
               <p>Email: info@familycareschools.edu</p>
               <p>Phone: +233 20 680 5570</p>
             </address>
