@@ -15,14 +15,16 @@ export function useChatbot() {
   async function sendMessage(text: string) {
     setLoading(true);
     setError(null);
-    const newMessages = [...messages, { role: "user", content: text }];
+    // Explicitly type the messages
+    const newMessages: Message[] = [...messages, { role: "user", content: text }];
     setMessages(newMessages);
     try {
       const { data, error: funcError } = await supabase.functions.invoke("chatbot", {
         body: { messages: newMessages },
       });
       if (funcError) throw funcError;
-      setMessages([...newMessages, { role: "assistant", content: data.answer }]);
+      // Make sure we specify the correct role type below
+      setMessages([...newMessages, { role: "assistant" as const, content: data.answer }]);
     } catch (err: any) {
       setError(err.message || "Unknown error");
     }
