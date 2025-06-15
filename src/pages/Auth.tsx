@@ -101,61 +101,60 @@ const Auth = () => {
               </Button>
             </form>
           ) : (
-            <form onSubmit={mode === "login" ? handleLogin : handleSignup} className="space-y-4">
-              <Input
-                type="email"
-                placeholder="Email"
-                value={email}
-                required
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <Input
-                type="password"
-                placeholder="Password"
-                value={password}
-                required
-                minLength={6}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <Button
-                type="submit"
-                className="w-full bg-skyBlue"
-                disabled={formLoading}
-              >
-                {formLoading
-                  ? mode === "login"
-                    ? "Logging in..."
-                    : "Signing up..."
-                  : mode === "login"
-                  ? "Log in"
-                  : "Sign up"}
-              </Button>
-              <div className="mt-4 text-sm text-center">
-                {mode === "login" ? (
-                  <span>
-                    Don&apos;t have an account?{" "}
-                    <button
-                      type="button"
-                      className="text-skyBlue hover:underline"
-                      onClick={() => setMode("signup")}
-                    >
-                      Sign up
-                    </button>
-                  </span>
-                ) : (
-                  <span>
-                    Already have an account?{" "}
-                    <button
-                      type="button"
-                      className="text-skyBlue hover:underline"
-                      onClick={() => setMode("login")}
-                    >
-                      Log in
-                    </button>
-                  </span>
-                )}
+            <div>
+              <div className="flex justify-center mb-6 gap-2">
+                <Button
+                  type="button"
+                  variant={mode === "login" ? "default" : "outline"}
+                  className={`w-1/2 ${mode === "login" ? "bg-skyBlue text-white hover:bg-skyBlue/90" : ""}`}
+                  onClick={() => setMode("login")}
+                  disabled={mode === "login"}
+                >
+                  Log in
+                </Button>
+                <Button
+                  type="button"
+                  variant={mode === "signup" ? "default" : "outline"}
+                  className={`w-1/2 ${mode === "signup" ? "bg-skyBlue text-white hover:bg-skyBlue/90" : ""}`}
+                  onClick={() => setMode("signup")}
+                  disabled={mode === "signup"}
+                >
+                  Sign up
+                </Button>
               </div>
-            </form>
+              <form onSubmit={mode === "login" ? handleLogin : handleSignup} className="space-y-4">
+                <Input
+                  type="email"
+                  placeholder="Email"
+                  value={email}
+                  required
+                  onChange={(e) => setEmail(e.target.value)}
+                  autoComplete="email"
+                />
+                <Input
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  required
+                  minLength={6}
+                  onChange={(e) => setPassword(e.target.value)}
+                  autoComplete={mode === "login" ? "current-password" : "new-password"}
+                />
+                <Button
+                  type="submit"
+                  className="w-full bg-skyBlue"
+                  disabled={formLoading}
+                >
+                  {formLoading
+                    ? mode === "login"
+                      ? "Logging in..."
+                      : "Signing up..."
+                    : mode === "login"
+                    ? "Log in"
+                    : "Sign up"}
+                </Button>
+              </form>
+            </div>
           )}
         </CardContent>
       </Card>
@@ -163,3 +162,4 @@ const Auth = () => {
   );
 };
 export default Auth;
+
