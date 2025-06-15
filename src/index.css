@@ -5,7 +5,7 @@
 
 @layer base {
   :root {
-    --background: 195 30% 97%;
+    --background: 48 100% 88%; /* #FFF2C2 in HSL */
     --foreground: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;
@@ -14,16 +14,16 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 195 85% 57%;
+    --primary: 191 100% 50%; /* #00CAFF in HSL */
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 39 100% 97%;
+    --secondary: 48 100% 88%; /* #FFF2C2 in HSL */
     --secondary-foreground: 222.2 47.4% 11.2%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 195 85% 90%;
+    --accent: 191 100% 86%; /* lite #00CAFF */
     --accent-foreground: 222.2 47.4% 11.2%;
 
     --destructive: 0 84.2% 60.2%;
@@ -31,24 +31,25 @@
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 195 85% 57%;
+    --ring: 191 100% 50%; /* #00CAFF in HSL */
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 98%;
+    --sidebar-background: 48 100% 97%; /* slightly lighter #FFF2C2 */
     --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 195 85% 57%;
+    --sidebar-primary: 191 100% 50%; /* #00CAFF */
     --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent: 48 100% 93%; /* lighter cream */
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 195 85% 57%;
+    --sidebar-ring: 191 100% 50%; /* #00CAFF */
   }
 
   .dark {
+    /* You may want to customize dark theme as well -- leaving as default for now */
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
-    /* ... keep existing code */
+    /* ... keep existing code ... */
   }
 }
 
@@ -64,8 +65,8 @@
 
 @layer components {
   .hero-section {
-    background-image: radial-gradient(circle at top right, rgba(51, 195, 240, 0.15), transparent 70%),
-                     radial-gradient(circle at bottom left, rgba(241, 241, 241, 0.3), transparent 70%);
+    background-image: radial-gradient(circle at top right, rgba(0,202,255,0.15), transparent 70%),
+                     radial-gradient(circle at bottom left, rgba(255,242,194,0.3), transparent 70%);
   }
 
   .fc-card {
@@ -73,6 +74,7 @@
   }
 
   .fc-input {
-    @apply px-4 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-skyBlue focus:border-transparent;
+    @apply px-4 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[color:#00CAFF] focus:border-transparent;
   }
 }
+
