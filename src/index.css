@@ -1,52 +1,53 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    /* Main Theme Colors */
-    --background: 48 100% 88%; /* #FFF2C2 in HSL */
+    /* Classic Blue-Focused Theme */
+    --background: 210 60% 98%; /* light sky blue */
     --foreground: 222.2 84% 4.9%;
 
-    --card: 0 0% 100%;
+    --card: 210 40% 99%;     /* off-white card background */
     --card-foreground: 222.2 84% 4.9%;
 
-    --popover: 0 0% 100%;
+    --popover: 210 40% 98%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 191 100% 50%; /* #00CAFF in HSL */
+    --primary: 210 90% 52%;      /* vivid blue */
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 48 100% 88%; /* #FFF2C2 in HSL */
+    --secondary: 210 100% 95%;   /* blue-tinted light */
     --secondary-foreground: 222.2 47.4% 11.2%;
 
-    --muted: 210 40% 96.1%;
+    --muted: 211 50% 92%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 191 100% 86%; /* lite #00CAFF */
+    --accent: 211 94% 85%;      /* pastel blue accent */
     --accent-foreground: 222.2 47.4% 11.2%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 191 100% 50%; /* #00CAFF in HSL */
+    --border: 212 40% 94%;
+    --input: 212 40% 94%;
+    --ring: 210 90% 52%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 48 100% 97%; /* slightly lighter #FFF2C2 */
+    --sidebar-background: 210 60% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 191 100% 50%; /* #00CAFF */
+    --sidebar-primary: 210 90% 52%;
     --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 48 100% 93%; /* lighter cream */
+    --sidebar-accent: 210 100% 96%;
     --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 191 100% 50%; /* #00CAFF */
+    --sidebar-border: 212 40% 94%;
+    --sidebar-ring: 210 90% 52%;
   }
 
   .dark {
-    /* You may want to customize dark theme as well -- leaving as default for now */
+    /* Default dark, but with a blue accent */
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
 
@@ -56,7 +57,7 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
+    --primary: 210 70% 60%;   /* blue */
     --primary-foreground: 222.2 47.4% 11.2%;
 
     --secondary: 217.2 32.6% 17.5%;
@@ -65,7 +66,7 @@
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 217.2 32.6% 17.5%;
+    --accent: 217.2 32.6% 21.5%; /* faded blue accent */
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 62.8% 30.6%;
@@ -73,16 +74,16 @@
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 48%;
+    --ring: 210 90% 55%;
 
     --sidebar-background: 222.2 84% 4.9%;
     --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 210 40% 98%;
+    --sidebar-primary: 210 70% 60%;
     --sidebar-primary-foreground: 222.2 47.4% 11.2%;
-    --sidebar-accent: 217.2 32.6% 17.5%;
+    --sidebar-accent: 217.2 32.6% 21.5%;
     --sidebar-accent-foreground: 210 40% 98%;
     --sidebar-border: 217.2 32.6% 17.5%;
-    --sidebar-ring: 224.3 76.3% 48%;
+    --sidebar-ring: 210 70% 60%;
   }
 }
 
@@ -98,8 +99,8 @@
 
 @layer components {
   .hero-section {
-    background-image: radial-gradient(circle at top right, rgba(0,202,255,0.15), transparent 70%),
-                     radial-gradient(circle at bottom left, rgba(255,242,194,0.3), transparent 70%);
+    background-image: radial-gradient(circle at top right, rgba(0,170,255,0.15), transparent 70%),
+                     radial-gradient(circle at bottom left, rgba(210,230,255,0.22), transparent 70%);
   }
 
   .fc-card {
@@ -107,14 +108,15 @@
   }
 
   .fc-input {
-    @apply px-4 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[color:#00CAFF] focus:border-transparent;
+    @apply px-4 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[color:#1996ff] focus:border-transparent;
   }
 }
 
-/* Optional: if these added styles existed, revert them! */
+/* Blue focused backgrounds, remove cream variants */
 .bg-section-cream {
-  background-color: #FFF2C2;
+  background-color: hsl(210 60% 98%);
 }
 .bg-section-blue {
-  background: linear-gradient(90deg, #FFF2C2 60%, #00CAFF10 100%);
+  background: linear-gradient(90deg, hsl(210 60% 98%) 60%, hsl(210 90% 95%) 100%);
 }
+
