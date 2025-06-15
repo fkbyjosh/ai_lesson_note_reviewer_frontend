@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -112,7 +111,6 @@ const Index = () => {
             </div>
           </div>
         </section>
-
         {/* CTA Section */}
         <section className="py-16 bg-skyBlue/10">
           <div className="container mx-auto px-4 text-center">
@@ -120,15 +118,14 @@ const Index = () => {
             <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
               Join other teachers at Family Care Schools who are already enhancing their teaching materials with AI assistance.
             </p>
-            <Link to="/login">
+            <a href="/auth">
               <Button className="bg-skyBlue hover:bg-skyBlue/90 text-white px-8 py-2 text-lg">
                 Start Now
               </Button>
-            </Link>
+            </a>
           </div>
         </section>
       </main>
-
       <Footer />
     </div>
   );
