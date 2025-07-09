@@ -1,7 +1,6 @@
 
 import { useState } from "react";
 import { useAuthSession } from "@/hooks/useAuthSession";
-import { supabase } from "@/integrations/supabase/client";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -30,45 +29,63 @@ const Auth = () => {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormLoading(true);
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
-    setFormLoading(false);
-    if (error) {
-      toast({ title: "Login failed", description: error.message });
+    
+    try {
+      // TODO: Replace with your custom backend API call
+      // Example: const response = await fetch('/api/auth/login', { method: 'POST', body: JSON.stringify({ email, password }) });
+      
+      // Mock success for now
+      setTimeout(() => {
+        toast({ title: "Login successful", description: "Please connect your custom backend API." });
+        setFormLoading(false);
+      }, 1000);
+      
+    } catch (error: any) {
+      setFormLoading(false);
+      toast({ title: "Login failed", description: error.message || "Please connect your custom backend API." });
     }
   };
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormLoading(true);
-    const redirectUrl = `${window.location.origin}/auth`; // stays on the same page
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: { emailRedirectTo: redirectUrl },
-    });
-    setFormLoading(false);
-    if (error) {
-      toast({ title: "Sign up failed", description: error.message });
-    } else {
-      toast({ title: "Sign up email sent!", description: "Check your inbox to confirm your email." });
+    
+    try {
+      // TODO: Replace with your custom backend API call
+      // Example: const response = await fetch('/api/auth/signup', { method: 'POST', body: JSON.stringify({ email, password }) });
+      
+      // Mock success for now
+      setTimeout(() => {
+        toast({ title: "Sign up successful", description: "Please connect your custom backend API." });
+        setFormLoading(false);
+      }, 1000);
+      
+    } catch (error: any) {
+      setFormLoading(false);
+      toast({ title: "Sign up failed", description: error.message || "Please connect your custom backend API." });
     }
   };
 
   const handleUsername = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormLoading(true);
-    // Set username in the profiles table
-    if (!profile) return;
-    const { error } = await supabase
-      .from("profiles")
-      .update({ username })
-      .eq("id", profile.id);
-    setFormLoading(false);
-    if (error) {
-      toast({ title: "Username error", description: error.message });
-    } else {
-      toast({ title: "Username saved!" });
-      window.location.reload(); // force reload so all pages see profile set
+    
+    try {
+      // TODO: Replace with your custom backend API call
+      // Example: const response = await fetch('/api/user/profile', { method: 'PUT', body: JSON.stringify({ username }) });
+      
+      if (!profile) return;
+      
+      // Mock success for now
+      setTimeout(() => {
+        toast({ title: "Username saved!", description: "Please connect your custom backend API." });
+        setFormLoading(false);
+        // window.location.reload(); // force reload so all pages see profile set
+      }, 1000);
+      
+    } catch (error: any) {
+      setFormLoading(false);
+      toast({ title: "Username error", description: error.message || "Please connect your custom backend API." });
     }
   };
 
