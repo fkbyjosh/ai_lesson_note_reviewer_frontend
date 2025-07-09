@@ -4,8 +4,14 @@ import { Card, CardContent } from "@/components/ui/card";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { GraduationCap, ClipboardCheck, BookOpen } from "lucide-react";
+import { useAuthSession } from "@/hooks/useAuthSession";
+import { useLogout } from "@/hooks/useLogout";
 
 const Index = () => {
+  const { session, loading } = useAuthSession();
+  const logout = useLogout();
+  const isUser = !loading && !!session;
+
   const features = [
     {
       icon: <BookOpen className="h-12 w-12 text-skyBlue mb-4" />,
@@ -46,11 +52,21 @@ const Index = () => {
                       Get Started
                     </Button>
                   </Link>
-                  <Link to="/login">
-                    <Button variant="outline" className="border-skyBlue text-skyBlue hover:bg-skyBlue hover:text-white">
-                      Teacher Login
+                  {isUser ? (
+                    <Button 
+                      variant="outline" 
+                      className="border-skyBlue text-skyBlue hover:bg-skyBlue hover:text-white"
+                      onClick={logout}
+                    >
+                      Sign Out
                     </Button>
-                  </Link>
+                  ) : (
+                    <Link to="/auth">
+                      <Button variant="outline" className="border-skyBlue text-skyBlue hover:bg-skyBlue hover:text-white">
+                        Teacher Login
+                      </Button>
+                    </Link>
+                  )}
                 </div>
               </div>
               <div className="relative flex justify-center">
@@ -118,11 +134,20 @@ const Index = () => {
             <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
               Join other teachers at Family Care Schools who are already enhancing their teaching materials with AI assistance.
             </p>
-            <a href="/auth">
-              <Button className="bg-skyBlue hover:bg-skyBlue/90 text-white px-8 py-2 text-lg">
-                Start Now
+            {isUser ? (
+              <Button 
+                className="bg-skyBlue hover:bg-skyBlue/90 text-white px-8 py-2 text-lg"
+                onClick={logout}
+              >
+                Sign Out
               </Button>
-            </a>
+            ) : (
+              <Link to="/auth">
+                <Button className="bg-skyBlue hover:bg-skyBlue/90 text-white px-8 py-2 text-lg">
+                  Start Now
+                </Button>
+              </Link>
+            )}
           </div>
         </section>
       </main>
