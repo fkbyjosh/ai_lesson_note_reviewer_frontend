@@ -1,6 +1,5 @@
 
 import { useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
 
 interface Message {
   role: "system" | "user" | "assistant";
@@ -15,20 +14,28 @@ export function useChatbot() {
   async function sendMessage(text: string) {
     setLoading(true);
     setError(null);
-    // Explicitly type the messages
+    
     const newMessages: Message[] = [...messages, { role: "user", content: text }];
     setMessages(newMessages);
+    
     try {
-      const { data, error: funcError } = await supabase.functions.invoke("chatbot", {
-        body: { messages: newMessages },
-      });
-      if (funcError) throw funcError;
-      // Make sure we specify the correct role type below
-      setMessages([...newMessages, { role: "assistant" as const, content: data.answer }]);
+      // TODO: Replace with your custom backend API call
+      // Example: const response = await fetch('/api/chat', { method: 'POST', body: JSON.stringify({ messages: newMessages }) });
+      
+      // Mock response for now
+      setTimeout(() => {
+        setMessages([...newMessages, { 
+          role: "assistant" as const, 
+          content: "This is a placeholder response. Please connect your custom backend API." 
+        }]);
+        setLoading(false);
+      }, 1000);
+      
     } catch (err: any) {
       setError(err.message || "Unknown error");
+      setLoading(false);
     }
-    setLoading(false);
   }
+
   return { messages, sendMessage, loading, error };
 }
