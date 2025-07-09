@@ -98,23 +98,55 @@ export default function LessonReviewForm() {
           {error && (
             <div className="text-red-500 text-center my-2">{error}</div>
           )}
-          {feedback && (
+          {feedback && feedback.length > 0 && (
             <div className="space-y-4">
-              <div className="bg-gray-50 p-3 rounded">
-                <strong className="text-skyBlue">Clarity: </strong>{feedback.clarity}
-              </div>
-              <div className="bg-gray-50 p-3 rounded">
-                <strong className="text-skyBlue">Structure: </strong>{feedback.structure}
-              </div>
-              <div className="bg-gray-50 p-3 rounded">
-                <strong className="text-skyBlue">Content: </strong>{feedback.content}
-              </div>
-              <div className="bg-gray-50 p-3 rounded">
-                <strong className="text-skyBlue">Suggestions: </strong>{feedback.suggestions}
-              </div>
-              <div className="bg-green-50 p-3 rounded">
-                <strong className="text-green-700">Overall: </strong>{feedback.overall}
-              </div>
+              {feedback.map((item, index) => (
+                <div key={item.id} className="border rounded-lg p-4 space-y-3">
+                  <div className="flex justify-between items-start">
+                    <h3 className="font-semibold text-skyBlue">Feedback by {item.reviewer}</h3>
+                    <span className="text-sm text-gray-500">Score: {item.score}/10</span>
+                  </div>
+                  
+                  {item.feedback_text && (
+                    <div className="bg-gray-50 p-3 rounded">
+                      <strong className="text-skyBlue">Feedback: </strong>
+                      {item.feedback_text}
+                    </div>
+                  )}
+                  
+                  {item.strengths && (
+                    <div className="bg-green-50 p-3 rounded">
+                      <strong className="text-green-700">Strengths: </strong>
+                      {item.strengths}
+                    </div>
+                  )}
+                  
+                  {item.areas_for_improvement && (
+                    <div className="bg-yellow-50 p-3 rounded">
+                      <strong className="text-yellow-700">Areas for Improvement: </strong>
+                      {item.areas_for_improvement}
+                    </div>
+                  )}
+                  
+                  {item.suggestions && (
+                    <div className="bg-blue-50 p-3 rounded">
+                      <strong className="text-blue-700">Suggestions: </strong>
+                      {item.suggestions}
+                    </div>
+                  )}
+                  
+                  {item.overall_assessment && (
+                    <div className="bg-purple-50 p-3 rounded">
+                      <strong className="text-purple-700">Overall Assessment: </strong>
+                      {item.overall_assessment}
+                    </div>
+                  )}
+                  
+                  <div className="text-xs text-gray-400">
+                    Created: {new Date(item.created_at).toLocaleString()}
+                  </div>
+                </div>
+              ))}
             </div>
           )}
         </div>
