@@ -29,7 +29,7 @@ const Auth = () => {
     setFormLoading(true);
     
     try {
-      const response = await apiService.login(email, password);
+      const response = await apiService.login(username, password);
       apiService.storeTokens(response.access, response.refresh);
       
       toast({
@@ -155,14 +155,26 @@ const Auth = () => {
                   autoComplete="username"
                 />
               )}
-              <Input
-                type="email"
-                placeholder="Email"
-                value={email}
-                required
-                onChange={(e) => setEmail(e.target.value)}
-                autoComplete="email"
-              />
+              {mode === "login" && (
+                <Input
+                  type="text"
+                  placeholder="Username"
+                  value={username}
+                  required
+                  onChange={(e) => setUsername(e.target.value)}
+                  autoComplete="username"
+                />
+              )}
+              {mode === "signup" && (
+                <Input
+                  type="email"
+                  placeholder="Email"
+                  value={email}
+                  required
+                  onChange={(e) => setEmail(e.target.value)}
+                  autoComplete="email"
+                />
+              )}
               <Input
                 type="password"
                 placeholder="Password"
