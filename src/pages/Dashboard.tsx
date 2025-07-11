@@ -92,7 +92,7 @@ const Dashboard = () => {
             <h1 className="text-3xl font-bold text-gray-800">Teacher Dashboard</h1>
             <p className="text-gray-600">Manage your lesson notes and AI reviews</p>
           </div>
-          <Link to="/review-notes">
+          <Link to="/lesson-notes">
             <Button className="mt-4 md:mt-0 bg-skyBlue hover:bg-skyBlue/90">
               Create New Note
             </Button>

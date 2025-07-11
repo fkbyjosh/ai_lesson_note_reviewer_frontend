@@ -29,7 +29,7 @@ const Navbar = () => {
         <nav className="hidden md:flex items-center space-x-6">
           <Link to="/" className="text-gray-700 hover:text-skyBlue transition-colors">Home</Link>
           <Link to="/dashboard" className="text-gray-700 hover:text-skyBlue transition-colors">Dashboard</Link>
-          <Link to="/review-notes" className="text-gray-700 hover:text-skyBlue transition-colors">Review Notes</Link>
+          <Link to="/lesson-notes" className="text-gray-700 hover:text-skyBlue transition-colors">Review Notes</Link>
           <Separator orientation="vertical" className="h-6" />
           {isUser ? (
             <Button
@@ -67,7 +67,7 @@ const Navbar = () => {
             <Link to="/dashboard" className="block py-2 px-4 text-gray-700 hover:bg-gray-50 rounded-md" onClick={() => setIsOpen(false)}>
               Dashboard
             </Link>
-            <Link to="/review-notes" className="block py-2 px-4 text-gray-700 hover:bg-gray-50 rounded-md" onClick={() => setIsOpen(false)}>
+            <Link to="/lesson-notes" className="block py-2 px-4 text-gray-700 hover:bg-gray-50 rounded-md" onClick={() => setIsOpen(false)}>
               Review Notes
             </Link>
             {isUser ? (

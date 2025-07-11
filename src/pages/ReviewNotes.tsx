@@ -34,9 +34,9 @@ const ReviewNotes = () => {
     
     try {
       // Get auth token from localStorage or wherever you store it
-      const token = localStorage.getItem('authToken'); // Adjust based on your auth implementation
+      const token = localStorage.getItem('access_token');
       
-      const response = await fetch('/api/lesson-notes/', {
+      const response = await fetch('http://127.0.0.1:8000/api/lesson-notes/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -1,7 +1,6 @@
 
 import React from "react";
 
-// Use the uploaded logo as-is, no background removal
 const LOGO_URL = "/lovable-uploads/87a85e5d-349b-49c1-ba73-7f24c4321fac.png";
 
 const Logo = ({

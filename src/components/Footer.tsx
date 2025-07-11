@@ -40,7 +40,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  to="/review-notes"
+                  to="/lesson-notes"
                   className="text-gray-600 dark:text-gray-300 hover:text-skyBlue transition-colors"
                 >
                   Review Notes

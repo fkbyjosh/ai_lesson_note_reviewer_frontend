@@ -47,7 +47,7 @@ const Index = () => {
                   Enhance your teaching materials with intelligent feedback. Our AI tool helps primary school teachers create more effective, engaging lesson notes.
                 </p>
                 <div className="flex flex-wrap gap-4">
-                  <Link to="/review-notes">
+                  <Link to="/lesson-notes">
                     <Button className="bg-skyBlue hover:bg-skyBlue/90 text-white px-6 py-2 rounded-md">
                       Get Started
                     </Button>

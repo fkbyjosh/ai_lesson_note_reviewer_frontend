@@ -155,26 +155,14 @@ const Auth = () => {
                   autoComplete="username"
                 />
               )}
-              {mode === "login" && (
-                <Input
-                  type="text"
-                  placeholder="Username"
-                  value={username}
-                  required
-                  onChange={(e) => setUsername(e.target.value)}
-                  autoComplete="username"
-                />
-              )}
-              {mode === "signup" && (
-                <Input
-                  type="email"
-                  placeholder="Email"
-                  value={email}
-                  required
-                  onChange={(e) => setEmail(e.target.value)}
-                  autoComplete="email"
-                />
-              )}
+              <Input
+                type="text"
+                placeholder="Username"
+                value={username}
+                required
+                onChange={(e) => setUsername(e.target.value)}
+                autoComplete="username"
+              />
               <Input
                 type="password"
                 placeholder="Password"
